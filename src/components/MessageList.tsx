@@ -31,7 +31,7 @@ const MessagesList = () => {
             className={`flex mb-4 fade-up ${isUser ? 'justify-end' : 'justify-start'} ${
               i === 1 ? 'max-w-md' : ''
             }`}
-            key={message.content}
+            key={`${i}-${message.content}`}
           >
             {!isUser && (
               <img

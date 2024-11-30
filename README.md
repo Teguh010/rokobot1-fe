@@ -1,4 +1,4 @@
-# Next.js ChatGPT With Strem text generator
+# Next.js ChatGPT With Stream text generator
 > Build and customize your own ChatGPT-like web app using Next.js and the OpenAI API. The provided code serves as a foundation, and you can customize it to fit your specific use case. 
 
 ## Overview

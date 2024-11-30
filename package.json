@@ -53,14 +53,14 @@
   "license": "MIT",
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged",
-      "pre-push": "jest"
+      "pre-commit": "npx lint-staged",
+      "pre-push": "npm test"
     }
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
-      "eslint . --fix",
-      "prettier --write"
+      "npx eslint . --fix",
+      "npx prettier --write"
     ]
   }
 }

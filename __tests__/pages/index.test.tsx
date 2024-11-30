@@ -1,16 +1,18 @@
-import { render, screen, waitFor } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
+import App from '@/pages/index'
 
-import App from 'pages/index'
+beforeAll(() => {
+  // Mock scrollIntoView
+  window.HTMLElement.prototype.scrollIntoView = jest.fn()
+})
 
 describe('App', () => {
-  it('matches the snapshot', async () => {
+  it('renders the chat interface', () => {
     render(<App />)
-    await waitFor(() => {
-      expect(screen).toMatchSnapshot()
-    })
-  })
-  it('shows the heading of the index page', () => {
-    render(<App />)
-    expect(screen.getByRole('heading', { name: 'Next Starter Kit' })).toBeInTheDocument()
+
+    // Test untuk elemen-elemen yang benar-benar ada di halaman
+    expect(screen.getByPlaceholderText('Enter your message here...')).toBeInTheDocument()
+    expect(screen.getByRole('button', { name: 'Send' })).toBeInTheDocument()
+    expect(screen.getByAltText('avatar')).toBeInTheDocument()
   })
 })

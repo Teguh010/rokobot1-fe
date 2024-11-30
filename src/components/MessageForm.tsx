@@ -33,6 +33,12 @@ const MessageForm = () => {
           autoFocus
           className="!p-3 text-gray-900 border-0 ring-1 dark:ring-0 ring-gray-300/40 focus:ring-gray-300/80 focus:outline-none dark:text-white dark:placeholder-gray-400 dark:bg-gray-800/80 backdrop-blur shadow-none"
           onChange={(e: ChangeEvent<HTMLTextAreaElement>) => setContent(e.target.value)}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter' && !e.shiftKey) {
+              e.preventDefault()
+              handleSubmit()
+            }
+          }}
         />
         <div className="absolute right-9 bottom-[50px]">
           <div className="flex space-x-3">

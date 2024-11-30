@@ -9,13 +9,16 @@ const MessageForm = () => {
 
   const handleSubmit = async (e?: React.FormEvent<HTMLFormElement>) => {
     e?.preventDefault()
-    if (!content.trim()) return
+    const messageContent = content.trim() // Store content in temporary variable
+    if (!messageContent) return
+
+    setContent('') // Clear input immediately
 
     try {
-      await addMessage(content)
-      setContent('')
+      await addMessage(messageContent) // Use stored content
     } catch (error) {
       console.error('Failed to send message:', error)
+      setContent(messageContent) // Restore content if error occurs
     }
   }
 

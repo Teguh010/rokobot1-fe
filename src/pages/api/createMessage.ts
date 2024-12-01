@@ -10,7 +10,7 @@ export default async function createMessage(req: NextApiRequest, res: NextApiRes
 
   const body = JSON.stringify({
     messages: conversationHistory,
-    model: 'gpt-4',
+    model: 'gpt-4o-mini',
     stream: true
   })
 

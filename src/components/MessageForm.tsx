@@ -24,17 +24,14 @@ const MessageForm = () => {
 
   return (
     <form className="relative mx-auto max-w-3xl rounded-t-xl" onSubmit={handleSubmit}>
-      <div className="border-gray-200 h-[150px] rounded-t-xl backdrop-blur border-t border-l border-r border-gray-500/10 dark:border-gray-50/[0.06] bg-white supports-backdrop-blur:bg-white/95 p-5">
-        <label htmlFor="content" className="sr-only">
-          Your message
-        </label>
+      <div className="h-[150px] rounded-t-xl backdrop-blur border-t border-l border-r border-cyan-500/20 bg-gray-900/90 p-5">
         <TextArea
           name="content"
           placeholder="Enter your message here..."
           rows={3}
           value={content}
           autoFocus
-          className="!p-3 text-gray-900 border-0 ring-1 dark:ring-0 ring-gray-300/40 focus:ring-gray-300/80 focus:outline-none dark:text-white dark:placeholder-gray-400 dark:bg-gray-800/80 backdrop-blur shadow-none"
+          className="!p-3 text-cyan-400 border-0 ring-1 ring-cyan-500/30 focus:ring-cyan-500/50 focus:outline-none bg-gray-800/80 backdrop-blur placeholder-cyan-700"
           onChange={(e: ChangeEvent<HTMLTextAreaElement>) => setContent(e.target.value)}
           onKeyDown={(e) => {
             if (e.key === 'Enter' && !e.shiftKey) {
@@ -45,7 +42,12 @@ const MessageForm = () => {
         />
         <div className="absolute right-9 bottom-[50px]">
           <div className="flex space-x-3">
-            <Button className="" type="submit" size="small" disabled={isLoadingAnswer}>
+            <Button
+              className="bg-cyan-600 hover:bg-cyan-700 text-white border border-cyan-400/30"
+              type="submit"
+              size="small"
+              disabled={isLoadingAnswer}
+            >
               Send
               <svg
                 xmlns="http://www.w3.org/2000/svg"

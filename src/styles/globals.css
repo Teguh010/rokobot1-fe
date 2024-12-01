@@ -25,3 +25,26 @@
 .loader span:nth-child(3) {
   animation-delay: 150ms;
 }
+
+.glow-cyan {
+  box-shadow: 0 0 10px rgba(6, 182, 212, 0.5);
+}
+
+.glow-blue {
+  box-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
+}
+
+.fade-up {
+  animation: fadeUp 0.3s ease-out;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

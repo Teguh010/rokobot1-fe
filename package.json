@@ -5,7 +5,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@apideck/components": "^0.12.3",
@@ -58,8 +59,7 @@
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
-      "npx eslint . --fix",
-      "npx prettier --write"
+      "npx eslint . --fix"
     ]
   }
 }

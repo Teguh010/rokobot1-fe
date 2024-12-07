@@ -87,8 +87,12 @@ const GlobeComponent = () => {
 
       // Buat array positions untuk LineGeometry
       const positions = [
-        basePosition.x, basePosition.y, basePosition.z,
-        topPosition.x, topPosition.y, topPosition.z
+        basePosition.x,
+        basePosition.y,
+        basePosition.z,
+        topPosition.x,
+        topPosition.y,
+        topPosition.z
       ]
 
       const geometry = new LineGeometry()
@@ -190,7 +194,7 @@ const GlobeComponent = () => {
       camera.aspect = currentContainer.clientWidth / currentContainer.clientHeight
       camera.updateProjectionMatrix()
       renderer.setSize(currentContainer.clientWidth, currentContainer.clientHeight)
-      
+
       // Update resolution untuk semua LineMaterial
       globeContainer.children.forEach((child) => {
         if (child instanceof Line2) {

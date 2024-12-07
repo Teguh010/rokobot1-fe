@@ -25,31 +25,25 @@ const Layout = ({
       <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       <link rel="icon" href={favicon} />
     </Head>
-    <div className="min-h-screen bg-[#030E07]">
-      <div className="border-b border-[#1E755C] p-2 text-[#1E755C] flex justify-between items-center">
-        <div>SYSTEM</div>
-        <div>TERMINAL</div>
-        <div>MESSAGES</div>
-      </div>
-
-      <div className="flex">
-        <div className="system-container w-1/5 border-r border-[#1E755C] p-4 text-[#1E755C]">
+    <div className="min-h-screen bg-[#030E07] flex flex-col">
+      <div className="first-row flex flex-nowrap  h-[65vh]">
+        <div className="system-container min-w-[300px] max-w-[20%] border-r border-[#1E755C] p-4 text-[#1E755C]">
           <div className="text-2xl font-bold border-t border-[#1E755C] py-2">20:27:46</div>
           <div className="space-y-2 mb-2">
             <div className="border-b border-t border-[#1E755C] py-2">UPTIME: 1:08:51</div>
             <div>
-              <div className="font-bold border-b border-[#1e755c7b] pb-2 mb-2">CPU USAGE:</div>
-              <div className="flex  cpu-usage h-[80px]">
-                <div className="flex flex-col items-left w-[80px]">
+              <div className="font-bold border-b border-[#1e755c7b] mb-2">CPU USAGE:</div>
+              <div className="flex  cpu-usage h-[50px] border-b border-[#1e755c7b]">
+                <div className="flex flex-col items-left w-[120px]">
                   <div className="text-md font-bold">* 1-2</div>
                   <div className="text-xs">avg 56%</div>
                 </div>
-                <div>
+                <div className="mb-2">
                   <CpuUsageChart />
                 </div>
               </div>
-              <div className="flex  cpu-usage h-[80px]">
-                <div className="flex flex-col items-left w-[80px]">
+              <div className="flex cpu-usage h-[50px] pt-2">
+                <div className="flex flex-col items-left w-[120px]">
                   <div className="text-md font-bold">* 3-5</div>
                   <div className="text-xs">avg 56%</div>
                 </div>
@@ -60,25 +54,26 @@ const Layout = ({
             </div>
           </div>
           <div>
-            <div className="font-bold border-t border-[#1E755C] pt-2">WORLD VIEW:</div>
+            <div className="font-bold border-t border-[#1E755C] pt-2 mt-4">WORLD VIEW:</div>
             <div>
               <GlobeComponent />
             </div>
           </div>
         </div>
 
-        <div className="terminal-container container w-2/3 flex flex-col border-r border-[#1E755C] p-4 text-[#1E755C]">
+        <div className="terminal-container min-w-[500px] flex-grow flex flex-col border-r border-[#1E755C] p-4 text-[#1E755C]">
           <div>Terminal</div>
         </div>
-        <div className="messages-container w-1/4 flex flex-col">
+
+        <div className="messages-container min-w-[250px] max-w-[25%] flex flex-col">
           <div className="flex-1 p-4">{children}</div>
         </div>
       </div>
 
-      <div className="border-t border-[#1E755C] p-2 text-[#1E755C] text-sm">
+      <div className="second-row border-t border-[#1E755C] p-4 text-[#1E755C] text-sm h-[35vh]">
         <div className="flex justify-between items-center">
-          <div>FILE FOLDER</div>
-          <div>KEYBOARD</div>
+          <div className="font-bold">FILE FOLDER</div>
+          <div className="font-bold">KEYBOARD</div>
         </div>
       </div>
     </div>

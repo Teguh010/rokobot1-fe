@@ -193,7 +193,7 @@ const GlobeComponent = () => {
   return (
     <div
       ref={containerRef}
-      className="w-[390px] h-[390px] bg-[#030E07]"
+      className="w-[300px] h-[300px] bg-[#030E07]"
       style={{ margin: 'auto' }}
     />
   )

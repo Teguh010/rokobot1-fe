@@ -21,7 +21,7 @@ const MessagesList = () => {
   }, [messages, streamingContent])
 
   return (
-    <div className="h-[calc(100vh-350px)] overflow-y-auto  font-mono">
+    <div className="h-[calc(100vh-450px)] overflow-y-auto  font-mono">
       {messages?.map((message: Message, i: number) => {
         const isUser = message.role === 'user'
         if (message.role === 'system') return null
@@ -52,7 +52,6 @@ const MessagesList = () => {
 
       {isLoadingAnswer && !streamingContent && (
         <div className="flex gap-2 mb-4">
-          <span className="text-[#00ff00]">#</span>
           <div className="flex gap-2">
             <span className="block w-2 h-4 bg-[#00ff00] animate-pulse"></span>
             <span className="block w-2 h-4 bg-[#00ff00] animate-pulse delay-75"></span>

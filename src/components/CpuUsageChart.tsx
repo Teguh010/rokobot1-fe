@@ -93,7 +93,7 @@ const CpuUsageChart = () => {
   }
 
   return (
-    <div style={{ height: '70px' }}>
+    <div style={{ height: '50px', width: '240px' }}>
       <Line data={data} options={options} />
     </div>
   )

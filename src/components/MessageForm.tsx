@@ -42,7 +42,8 @@ const MessageForm = () => {
         />
         <div className="absolute right-2 bottom-2">
           <Button
-            className="bg-[#66DCB7] p-1"
+            className="p-1"
+            style={{ backgroundColor: '#66DCB7' }}
             type="submit"
             size="small"
             disabled={isLoadingAnswer}

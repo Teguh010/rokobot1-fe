@@ -1,7 +1,6 @@
 import { Button, TextArea } from '@apideck/components'
-import { useState } from 'react'
+import React, { useState, ChangeEvent } from 'react'
 import { useMessages } from '@/utils/useMessages'
-import { ChangeEvent } from 'react'
 import { Icon } from '@iconify/react'
 
 const MessageForm = () => {

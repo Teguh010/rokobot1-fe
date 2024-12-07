@@ -2,6 +2,9 @@ import { useEffect, useRef } from 'react'
 import * as THREE from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 import { drawThreeGeo } from './chunks/threeGeoJSON'
+import { Line2 } from 'three/examples/jsm/lines/Line2'
+import { LineGeometry } from 'three/examples/jsm/lines/LineGeometry'
+import { LineMaterial } from 'three/examples/jsm/lines/LineMaterial'
 
 const GlobeComponent = () => {
   const containerRef = useRef<HTMLDivElement>(null)
@@ -23,7 +26,7 @@ const GlobeComponent = () => {
       1,
       100
     )
-    camera.position.z = 4.5
+    camera.position.z = 5
 
     // Setup renderer
     const renderer = new THREE.WebGLRenderer({ antialias: true })
@@ -75,23 +78,32 @@ const GlobeComponent = () => {
     // Create beam effect
     const createBeam = (lat: number, lng: number, radius: number) => {
       const basePosition = latLngToVector3(lat, lng, radius)
-      const beamHeight = radius * 0.5
+      const beamHeight = radius * 0.3
 
       const topPosition = basePosition
         .clone()
         .normalize()
         .multiplyScalar(radius + beamHeight)
 
-      const points = [basePosition, topPosition]
-      const geometry = new THREE.BufferGeometry().setFromPoints(points)
-      const material = new THREE.LineBasicMaterial({
+      // Buat array positions untuk LineGeometry
+      const positions = [
+        basePosition.x, basePosition.y, basePosition.z,
+        topPosition.x, topPosition.y, topPosition.z
+      ]
+
+      const geometry = new LineGeometry()
+      geometry.setPositions(positions)
+
+      const material = new LineMaterial({
         color: 0x1e755c,
         transparent: true,
         opacity: 0.9,
-        linewidth: 8
+        linewidth: 2, // dalam pixels
+        resolution: new THREE.Vector2(window.innerWidth, window.innerHeight)
       })
 
-      const beam = new THREE.Line(geometry, material)
+      const beam = new Line2(geometry, material)
+      beam.computeLineDistances()
       beam.userData.update = (time: number) => {
         material.opacity = 0.5 + Math.sin(time * 2) * 0.5
       }
@@ -161,7 +173,7 @@ const GlobeComponent = () => {
 
       // Update beam animations
       globeContainer.children.forEach((child) => {
-        if (child instanceof THREE.Line) {
+        if (child instanceof Line2) {
           child.userData.update?.(time)
         }
       })
@@ -178,6 +190,14 @@ const GlobeComponent = () => {
       camera.aspect = currentContainer.clientWidth / currentContainer.clientHeight
       camera.updateProjectionMatrix()
       renderer.setSize(currentContainer.clientWidth, currentContainer.clientHeight)
+      
+      // Update resolution untuk semua LineMaterial
+      globeContainer.children.forEach((child) => {
+        if (child instanceof Line2) {
+          const material = child.material as LineMaterial
+          material.resolution.set(currentContainer.clientWidth, currentContainer.clientHeight)
+        }
+      })
     }
     window.addEventListener('resize', handleResize)
 

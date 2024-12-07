@@ -9,7 +9,7 @@ const IndexPage: NextPage = () => {
     <MessagesProvider>
       <Layout>
         <MessagesList />
-        <div className="fixed bottom-0 right-0 left-0">
+        <div>
           <MessageForm />
         </div>
       </Layout>

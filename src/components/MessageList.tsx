@@ -21,66 +21,42 @@ const MessagesList = () => {
   }, [messages, streamingContent])
 
   return (
-    <div className="max-w-3xl mx-auto pt-8 h-[calc(100vh-180px)] overflow-y-auto">
+    <div className="h-[calc(100vh-350px)] overflow-y-auto  font-mono">
       {messages?.map((message: Message, i: number) => {
         const isUser = message.role === 'user'
         if (message.role === 'system') return null
         return (
           <div
             id={`message-${i}`}
-            className={`flex mb-4 fade-up ${isUser ? 'justify-end' : 'justify-start'}`}
+            className={`mb-4 fade-up flex ${isUser ? 'justify-end' : 'justify-start'}`}
             key={`${i}-${message.content}`}
           >
-            {!isUser && (
-              <img
-                src="https://www.teamsmart.ai/next-assets/team/ai.jpg"
-                className="w-9 h-9 rounded-full border-2 border-cyan-500 glow-cyan"
-                alt="avatar"
-              />
-            )}
             <div
-              style={{ maxWidth: 'calc(100% - 45px)' }}
-              className={`group relative px-3 py-2 rounded-lg ${
-                isUser
-                  ? 'mr-2 bg-gradient-to-r from-cyan-600 to-blue-700 text-white border border-cyan-400/30'
-                  : 'ml-2 bg-gradient-to-r from-gray-800 to-gray-900 text-cyan-400 border border-cyan-900'
+              className={`flex items-center gap-2 p-2 max-w-[80%] ${
+                isUser ? 'border border-[#00FF9F] rounded text-[#00FF9F]' : 'bg-[#00FF9F] rounded'
               }`}
             >
-              {message.content.trim()}
+              <div className="flex-1">{message.content.trim()}</div>
             </div>
-            {isUser && (
-              <img
-                src="https://www.teamsmart.ai/next-assets/profile-image.png"
-                className="w-9 h-9 rounded-full border-2 border-blue-500 glow-blue"
-                alt="avatar"
-              />
-            )}
           </div>
         )
       })}
 
       {streamingContent && (
-        <div className="flex justify-start mb-4">
-          <img
-            src="https://www.teamsmart.ai/next-assets/team/ai.jpg"
-            className="w-9 h-9 rounded-full"
-            alt="avatar"
-          />
-          <div
-            style={{ maxWidth: 'calc(100% - 45px)' }}
-            className="group relative px-3 py-2 rounded-lg ml-2 bg-gradient-to-r from-gray-800 to-gray-900 text-cyan-400 border border-cyan-900"
-          >
-            {streamingContent}
+        <div className="mb-4 flex justify-start">
+          <div className="flex items-center gap-2 p-2 max-w-[80%] bg-[#003300] rounded">
+            <div>{streamingContent}</div>
           </div>
         </div>
       )}
 
       {isLoadingAnswer && !streamingContent && (
-        <div className="flex justify-start mb-4">
-          <div className="loader ml-2 p-2.5 px-4 bg-gray-800 border border-cyan-900 rounded-full space-x-1.5 flex justify-between items-center relative">
-            <span className="block w-3 h-3 rounded-full bg-cyan-500 animate-pulse"></span>
-            <span className="block w-3 h-3 rounded-full bg-cyan-500 animate-pulse delay-75"></span>
-            <span className="block w-3 h-3 rounded-full bg-cyan-500 animate-pulse delay-150"></span>
+        <div className="flex gap-2 mb-4">
+          <span className="text-[#00ff00]">#</span>
+          <div className="flex gap-2">
+            <span className="block w-2 h-4 bg-[#00ff00] animate-pulse"></span>
+            <span className="block w-2 h-4 bg-[#00ff00] animate-pulse delay-75"></span>
+            <span className="block w-2 h-4 bg-[#00ff00] animate-pulse delay-150"></span>
           </div>
         </div>
       )}
